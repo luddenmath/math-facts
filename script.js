@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const version = "1.0.7"; // Update this version number when you make changes
+
   console.log("DOM fully loaded and parsed");
 
   // Initialize stats
@@ -53,7 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>Total Correct: <span id="correct">${totalCorrect}</span></p>
       <p>Total Incorrect: <span id="incorrect">${totalIncorrect}</span></p>
       <p>Total Attempted: <span id="attempted">${totalAttempted}</span></p>
+      <p>Version: <span id="version">${version}</span></p> <!-- Version Display -->
     `;
+
+    // Add event listener for Enter key after the input field has been created
+    const userInput = document.getElementById('user-answer');
+    if (userInput) {
+      userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          checkAnswer(); // Trigger checkAnswer when Enter is pressed
+        }
+      });
+    } else {
+      console.error('user-answer input not found!');
+    }
   };
 
   // Function to check the user's answer
@@ -100,19 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update the UI with the new question
     setTimeout(updateUI, 500); // Slight delay to show result before updating
-  }
-
-  // Check if the input exists and then add event listener for Enter key
-  const userInput = document.getElementById('user-answer');
-  if (userInput) {
-    console.log('user-answer input found, adding event listener for Enter key');
-    userInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        checkAnswer(); // Trigger checkAnswer when Enter is pressed
-      }
-    });
-  } else {
-    console.error('user-answer input not found!');
   }
 
   // Initially display the first question
