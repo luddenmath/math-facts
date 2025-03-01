@@ -99,5 +99,12 @@ function checkAnswer() {
   setTimeout(updateUI, 500); // Slight delay to show result before updating
 }
 
+// Add event listener for the Enter key to trigger the checkAnswer function
+document.getElementById('user-answer').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    checkAnswer(); // Trigger checkAnswer when Enter is pressed
+  }
+});
+
 // Initially display the first question
 updateUI();
