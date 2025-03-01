@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const version = "1.0.7"; // Update this version number when you make changes
+  const version = "1.0.8"; // Update this version number when you make changes
 
   console.log("DOM fully loaded and parsed");
 
@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <h1>Math Facts Practice</h1>
       <p>Solve: ${question}</p>
       <input type="number" id="user-answer" placeholder="Your answer" />
-      <button onclick="checkAnswer()">Check</button>
       <p id="result"></p>
       <p>Current Streak: <span id="streak">${currentStreak}</span></p>
       <p>Best Streak: <span id="best-streak">${bestStreak}</span></p>
@@ -66,6 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
           checkAnswer(); // Trigger checkAnswer when Enter is pressed
         }
       });
+      
+      // Set focus on the input field so the cursor is in the answer box
+      userInput.focus();
     } else {
       console.error('user-answer input not found!');
     }
