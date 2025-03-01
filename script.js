@@ -1,3 +1,6 @@
+// Initialize score
+let score = 0;
+
 // Function to generate random math questions
 const generateQuestion = () => {
   const num1 = Math.floor(Math.random() * 10) + 1;
@@ -28,26 +31,47 @@ const generateQuestion = () => {
 };
 
 // Get the generated question and answer
-const { question, answer } = generateQuestion();
+let { question, answer } = generateQuestion();
 
-// Display the question and an input for the user to answer
-document.getElementById('app').innerHTML = `
-  <p>Solve: ${question}</p>
-  <input type="number" id="user-answer" placeholder="Your answer" />
-  <button onclick="checkAnswer()">Check</button>
-  <p id="result"></p>
-`;
+// Function to display the current question and score
+const updateUI = () => {
+  document.getElementById('app').innerHTML = `
+    <h1>Math Facts Practice</h1>
+    <p>Solve: ${question}</p>
+    <input type="number" id="user-answer" placeholder="Your answer" />
+    <button onclick="checkAnswer()">Check</button>
+    <p id="result"></p>
+    <p>Score: <span id="score">0</span></p>
+  `;
+};
 
 // Function to check the user's answer
 function checkAnswer() {
   const userAnswer = parseFloat(document.getElementById('user-answer').value);
   const resultElement = document.getElementById('result');
+  const scoreElement = document.getElementById('score');
 
+  // Check if the user's answer is correct
   if (userAnswer === answer) {
-    resultElement.innerHTML = 'Correct!';
+    resultElement.innerHTML = 'Correct! Well done!';
     resultElement.style.color = 'green';
+    score++; // Increase the score for a correct answer
   } else {
-    resultElement.innerHTML = `Incorrect. The correct answer is ${answer}.`;
+    resultElement.innerHTML = `Incorrect. The correct answer is ${answer}. Try again!`;
     resultElement.style.color = 'red';
   }
+
+  // Update the score on the page
+  scoreElement.innerText = score;
+
+  // Generate a new question
+  const { question: newQuestion, answer: newAnswer } = generateQuestion();
+  question = newQuestion;
+  answer = newAnswer;
+
+  // Update the UI with the new question
+  updateUI();
 }
+
+// Initially display the first question
+updateUI();
