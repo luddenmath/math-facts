@@ -41,7 +41,7 @@ const updateUI = () => {
     <input type="number" id="user-answer" placeholder="Your answer" />
     <button onclick="checkAnswer()">Check</button>
     <p id="result"></p>
-    <p>Score: <span id="score">0</span></p>
+    <p>Score: <span id="score">${score}</span></p>
   `;
 };
 
@@ -69,8 +69,8 @@ function checkAnswer() {
   question = newQuestion;
   answer = newAnswer;
 
-  // Update the UI with the new question
-  updateUI();
+  // Update the UI with the new question without overwriting the score or result
+  setTimeout(updateUI, 500); // Slight delay to show result before updating
 }
 
 // Initially display the first question
