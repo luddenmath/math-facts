@@ -1,5 +1,4 @@
-// Initialize score and other stats
-let score = 0;
+// Initialize stats
 let currentStreak = 0;
 let totalCorrect = 0;
 let totalIncorrect = 0;
@@ -45,7 +44,6 @@ const updateUI = () => {
     <input type="number" id="user-answer" placeholder="Your answer" />
     <button onclick="checkAnswer()">Check</button>
     <p id="result"></p>
-    <p>Score: <span id="score">${score}</span></p>
     <p>Current Streak: <span id="streak">${currentStreak}</span></p>
     <p>Total Correct: <span id="correct">${totalCorrect}</span></p>
     <p>Total Incorrect: <span id="incorrect">${totalIncorrect}</span></p>
@@ -57,7 +55,6 @@ const updateUI = () => {
 function checkAnswer() {
   const userAnswer = parseFloat(document.getElementById('user-answer').value);
   const resultElement = document.getElementById('result');
-  const scoreElement = document.getElementById('score');
   const streakElement = document.getElementById('streak');
   const correctElement = document.getElementById('correct');
   const incorrectElement = document.getElementById('incorrect');
@@ -69,7 +66,6 @@ function checkAnswer() {
   if (userAnswer === answer) {
     resultElement.innerHTML = 'Correct! Well done!';
     resultElement.style.color = 'green';
-    score++; // Increase the score for a correct answer
     currentStreak++; // Increase the current streak for correct answers
     totalCorrect++; // Increment total correct count
   } else {
@@ -80,7 +76,6 @@ function checkAnswer() {
   }
 
   // Update the UI with the new stats
-  scoreElement.innerText = score;
   streakElement.innerText = currentStreak;
   correctElement.innerText = totalCorrect;
   incorrectElement.innerText = totalIncorrect;
@@ -97,3 +92,4 @@ function checkAnswer() {
 
 // Initially display the first question
 updateUI();
+
