@@ -1,5 +1,6 @@
 // Initialize stats
 let currentStreak = 0;
+let bestStreak = 0;
 let totalCorrect = 0;
 let totalIncorrect = 0;
 let totalAttempted = 0;
@@ -45,6 +46,7 @@ const updateUI = () => {
     <button onclick="checkAnswer()">Check</button>
     <p id="result"></p>
     <p>Current Streak: <span id="streak">${currentStreak}</span></p>
+    <p>Best Streak: <span id="best-streak">${bestStreak}</span></p>
     <p>Total Correct: <span id="correct">${totalCorrect}</span></p>
     <p>Total Incorrect: <span id="incorrect">${totalIncorrect}</span></p>
     <p>Total Attempted: <span id="attempted">${totalAttempted}</span></p>
@@ -56,6 +58,7 @@ function checkAnswer() {
   const userAnswer = parseFloat(document.getElementById('user-answer').value);
   const resultElement = document.getElementById('result');
   const streakElement = document.getElementById('streak');
+  const bestStreakElement = document.getElementById('best-streak');
   const correctElement = document.getElementById('correct');
   const incorrectElement = document.getElementById('incorrect');
   const attemptedElement = document.getElementById('attempted');
@@ -75,8 +78,14 @@ function checkAnswer() {
     totalIncorrect++; // Increment total incorrect count
   }
 
+  // Update the best streak if necessary
+  if (currentStreak > bestStreak) {
+    bestStreak = currentStreak;
+  }
+
   // Update the UI with the new stats
   streakElement.innerText = currentStreak;
+  bestStreakElement.innerText = bestStreak;
   correctElement.innerText = totalCorrect;
   incorrectElement.innerText = totalIncorrect;
   attemptedElement.innerText = totalAttempted;
@@ -92,4 +101,3 @@ function checkAnswer() {
 
 // Initially display the first question
 updateUI();
-
