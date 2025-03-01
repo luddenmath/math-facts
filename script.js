@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     answer = newAnswer;
 
     // Update the UI with the new question
-    setTimeout(updateUI, 500); // Slight delay to show result before updating
+    setTimeout(updateUI, 800); // Slight delay to show result before updating
   }
 
   // Initially display the first question
