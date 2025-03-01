@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM fully loaded and parsed");
+
   // Initialize stats
   let currentStreak = 0;
   let bestStreak = 0;
@@ -100,12 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateUI, 500); // Slight delay to show result before updating
   }
 
-  // Add event listener for the Enter key to trigger the checkAnswer function
-  document.getElementById('user-answer').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      checkAnswer(); // Trigger checkAnswer when Enter is pressed
-    }
-  });
+  // Check if the input exists and then add event listener for Enter key
+  const userInput = document.getElementById('user-answer');
+  if (userInput) {
+    console.log('user-answer input found, adding event listener for Enter key');
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkAnswer(); // Trigger checkAnswer when Enter is pressed
+      }
+    });
+  } else {
+    console.error('user-answer input not found!');
+  }
 
   // Initially display the first question
   updateUI();
